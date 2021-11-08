@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@raidou/eslint-config-base",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "./.eslintrc",
   "license": "MIT",
   "scripts": {
