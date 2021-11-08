@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@raidou/eslint-config-base",
   "version": "1.0.0",
   "main": "./.eslintrc",
