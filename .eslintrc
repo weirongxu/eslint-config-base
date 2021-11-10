@@ -14,7 +14,7 @@
     "prettier"
   ],
   "rules": {
-    "no-console": "warn",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
     "prettier/prettier": ["error"],
     "@typescript-eslint/no-floating-promises": [
       "error",
