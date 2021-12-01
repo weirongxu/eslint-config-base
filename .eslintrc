@@ -11,6 +11,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
     "prettier"
   ],
   "rules": {
@@ -27,8 +28,6 @@
     "no-useless-return": ["error"],
     "object-shorthand": ["error"],
     "prefer-template": ["error"],
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-
-    "prettier/prettier": ["error"]
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
   }
 }
