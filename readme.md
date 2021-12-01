@@ -1,4 +1,4 @@
-# Personal eslint rules for typescript
+# Personal Eslint rules for Typescript
 
 ## Install
 
@@ -12,7 +12,7 @@ npm install @raidou/eslint-config-base
 
 ```json
 {
-  "extends": ["@raidou/eslint-config-base"],
   "root": true
+  "extends": ["@raidou/eslint-config-base"],
 }
 ```
