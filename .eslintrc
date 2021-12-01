@@ -14,20 +14,21 @@
     "prettier"
   ],
   "rules": {
+    "guard-for-in": ["error"],
+    "no-async-promise-executor": ["error"],
+    "no-implied-eval": "off",
+    "@typescript-eslint/no-implied-eval": ["error"],
+    "no-loop-func": "off",
+    "@typescript-eslint/no-loop-func": ["error"],
+    "no-throw-literal": "off",
+    "@typescript-eslint/no-throw-literal": ["error"],
+
+    "no-useless-rename": ["error"],
+    "no-useless-return": ["error"],
+    "object-shorthand": ["error"],
+    "prefer-template": ["error"],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "prettier/prettier": ["error"],
-    "@typescript-eslint/no-floating-promises": [
-      "error",
-      {
-        "ignoreVoid": true
-      }
-    ],
-    "@typescript-eslint/no-misused-promises": [
-      "error",
-      {
-        "checksConditionals": true,
-        "checksVoidReturn": false
-      }
-    ]
+
+    "prettier/prettier": ["error"]
   }
 }
