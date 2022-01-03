@@ -1,6 +1,6 @@
 {
   "name": "@raidou/eslint-config-base",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "main": "./.eslintrc",
   "license": "MIT",
   "repository": "git@github.com:weirongxu/eslint-config-base.git",
