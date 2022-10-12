@@ -20,8 +20,6 @@
     "no-async-promise-executor": ["error"],
     "no-implied-eval": "off",
     "@typescript-eslint/no-implied-eval": ["error"],
-    "no-loop-func": "off",
-    "@typescript-eslint/no-loop-func": ["error"],
     "no-throw-literal": "off",
     "@typescript-eslint/no-throw-literal": ["error"],
 
