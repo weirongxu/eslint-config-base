@@ -4,6 +4,9 @@
   "main": "./.eslintrc",
   "license": "MIT",
   "repository": "git@github.com:weirongxu/eslint-config-base.git",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "test": "eslint --ext .ts src"
   },
