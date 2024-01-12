@@ -16,12 +16,13 @@
     "prettier"
   ],
   "rules": {
-    "guard-for-in": ["error"],
-    "no-async-promise-executor": ["error"],
+    "guard-for-in": "error",
+    "no-async-promise-executor": "error",
     "no-implied-eval": "off",
-    "@typescript-eslint/no-implied-eval": ["error"],
+    "@typescript-eslint/no-implied-eval": "error",
     "no-throw-literal": "off",
-    "@typescript-eslint/no-throw-literal": ["error"],
+    "@typescript-eslint/no-throw-literal": "error",
+    "@typescript-eslint/no-unnecessary-condition": "error",
 
     "@typescript-eslint/require-await": "off",
     "@typescript-eslint/restrict-template-expressions": [
@@ -49,10 +50,10 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-unused-vars": "warn",
 
-    "no-useless-rename": ["error"],
-    "no-useless-return": ["error"],
-    "object-shorthand": ["error"],
-    "prefer-template": ["error"],
+    "no-useless-rename": "error",
+    "no-useless-return": "error",
+    "object-shorthand": "error",
+    "prefer-template": "error",
     "no-console": ["warn", { "allow": ["warn", "error"] }]
   }
 }
