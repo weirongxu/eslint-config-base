@@ -1,26 +1,28 @@
 {
   "name": "@raidou/eslint-config-base",
   "version": "2.2.0",
-  "main": "./.eslintrc",
+  "main": "./index.mjs",
   "license": "MIT",
   "repository": "git@github.com:weirongxu/eslint-config-base.git",
   "engines": {
     "node": ">=14.0.0"
   },
   "scripts": {
-    "test": "eslint --ext .ts src"
+    "test": "eslint --ext .ts test",
+    "build": "tsc -p tsconfig.json"
   },
   "files": [
-    ".eslintrc"
+    "eslint.config.mjs",
+    "index.mjs"
   ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "@typescript-eslint/parser": "^6.9.1",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1"
+    "@eslint/js": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.0.1",
+    "typescript-eslint": "^8.31.1"
   },
   "devDependencies": {
-    "eslint": "^8.53.0",
+    "eslint": "^9.25.1",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   }

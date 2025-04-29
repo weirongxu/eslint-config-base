@@ -2,5 +2,5 @@
   "compilerOptions": {
     "strict": true
   },
-  "include": ["./src"]
+  "include": ["./test", "./eslint.config.mjs", "./index.mjs"]
 }
