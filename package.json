@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "eslint --ext .ts test",
-    "build": "tsc -p tsconfig.build.json"
+    "build": "tsc -p tsconfig.build.json",
+    "prepublish": "npm build"
   },
   "files": [
     "eslint.config.mjs",
