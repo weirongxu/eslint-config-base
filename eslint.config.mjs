@@ -1,2 +1,2 @@
-import { tsconfig } from './index.mjs';
+import { tsconfig } from './dist/index.js';
 export default tsconfig;

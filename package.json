@@ -1,7 +1,7 @@
 {
   "name": "@raidou/eslint-config-base",
   "version": "3.0.0",
-  "main": "./index.mjs",
+  "main": "./dist/index.js",
   "license": "MIT",
   "repository": "git@github.com:weirongxu/eslint-config-base.git",
   "engines": {
@@ -9,11 +9,12 @@
   },
   "scripts": {
     "test": "eslint --ext .ts test",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.build.json"
   },
   "files": [
     "eslint.config.mjs",
-    "index.mjs"
+    "dist/index.js",
+    "dist/index.d.ts"
   ],
   "dependencies": {
     "@eslint/js": "^9.25.1",

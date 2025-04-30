@@ -1,14 +1,14 @@
-// @ts-check
 import js from '@eslint/js';
+import { type Linter } from 'eslint';
 import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import tseslint from 'typescript-eslint';
+import tseslint, { type ConfigArray } from 'typescript-eslint';
 
-const baseconfig = {
-  /**
-   * @type {import('eslint').Linter.Config}
-   */
+const baseconfig: {
+  js: Linter.Config;
+  ts: Linter.Config;
+} = {
   js: {
     name: 'eslint-config-base-js',
     rules: {
@@ -22,10 +22,6 @@ const baseconfig = {
       'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
   },
-
-  /**
-   * @type {import('eslint').Linter.Config}
-   */
   ts: {
     name: 'eslint-config-base-ts',
     rules: {
@@ -63,20 +59,14 @@ const baseconfig = {
   },
 };
 
-/**
- * @type {import('typescript-eslint').ConfigArray}
- */
-const jsconfig = defineConfig(
+const jsconfig: ConfigArray = defineConfig(
   js.configs.recommended,
   eslintPluginPrettierRecommended,
   eslintConfigPrettier,
   baseconfig.js,
 );
 
-/**
- * @type {import('typescript-eslint').ConfigArray}
- */
-const tsconfig = tseslint.config(
+const tsconfig: ConfigArray = tseslint.config(
   js.configs.recommended,
   eslintPluginPrettierRecommended,
   eslintConfigPrettier,
@@ -84,7 +74,7 @@ const tsconfig = tseslint.config(
   {
     languageOptions: {
       parserOptions: {
-        project: 'tsconfig.json',
+        projectService: true,
         sourceType: 'module',
       },
     },

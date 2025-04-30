@@ -1,6 +1,10 @@
 {
-  "compilerOptions": {
-    "strict": true
-  },
-  "include": ["./test", "./eslint.config.mjs", "./index.mjs"]
+  "references": [
+    {
+      "path": "./tsconfig.build.json"
+    },
+    {
+      "path": "./tsconfig.test.json"
+    }
+  ]
 }
