@@ -59,7 +59,7 @@ const baseconfig: {
   },
 };
 
-const jsconfig: ConfigArray = defineConfig(
+const jsconfig: Linter.Config[] = defineConfig(
   js.configs.recommended,
   eslintPluginPrettierRecommended,
   eslintConfigPrettier,
@@ -83,4 +83,4 @@ const tsconfig: ConfigArray = tseslint.config(
   baseconfig.ts,
 );
 
-export { baseconfig, jsconfig, tsconfig, tseslint };
+export { baseconfig, jsconfig, tsconfig, tseslint, type ConfigArray };
