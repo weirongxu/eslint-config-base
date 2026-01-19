@@ -66,7 +66,7 @@ const jsconfig: Linter.Config[] = defineConfig(
   baseconfig.js,
 );
 
-const tsconfig: ConfigArray = tseslint.config(
+const tsconfig: Linter.Config[] = defineConfig(
   js.configs.recommended,
   eslintPluginPrettierRecommended,
   eslintConfigPrettier,
