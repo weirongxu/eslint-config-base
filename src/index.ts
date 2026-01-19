@@ -1,9 +1,9 @@
 import js from '@eslint/js';
 import { type Linter } from 'eslint';
-import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import tseslint, { type ConfigArray } from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 
 const baseconfig: {
   js: Linter.Config;
@@ -83,4 +83,4 @@ const tsconfig: Linter.Config[] = defineConfig(
   baseconfig.ts,
 );
 
-export { baseconfig, jsconfig, tsconfig, tseslint, type ConfigArray };
+export { baseconfig, jsconfig, tsconfig, tseslint };
