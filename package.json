@@ -8,7 +8,8 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "test": "eslint --ext .ts test",
+    "test": "npm run build && npm run test:lint",
+    "test:lint": "eslint --ext .ts test",
     "build": "tsc -p tsconfig.build.json",
     "prepublish": "npm run build"
   },
