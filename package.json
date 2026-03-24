@@ -1,6 +1,6 @@
 {
   "name": "@raidou/eslint-config-base",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "main": "./dist/index.js",
   "license": "MIT",
   "repository": "git@github.com:weirongxu/eslint-config-base.git",
