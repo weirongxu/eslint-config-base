@@ -9,7 +9,7 @@ type RuleUrlConfig = {
   fixed?: boolean
 }
 
-const RULE_URL_MAPPING: Record<string, RuleUrlConfig> = {
+const RULE_URL_MAPPING: Record<`${string}/`, RuleUrlConfig> = {
   '@typescript-eslint/': {
     baseUrl: 'https://typescript-eslint.io/rules/',
   },
@@ -41,6 +41,14 @@ const RULE_URL_MAPPING: Record<string, RuleUrlConfig> = {
     baseUrl: 'https://www.npmjs.com/package/@babel/eslint-plugin',
     fixed: true,
   },
+  'prettier/': {
+    baseUrl: 'https://github.com/prettier/eslint-plugin-prettier',
+    fixed: true,
+  },
+  'standard/': {
+    baseUrl: 'https://standardjs.com/rules',
+    fixed: true,
+  },
 }
 
 const flatRules = (config: Linter.Config[]): Partial<RulesConfig> => {
@@ -64,6 +72,8 @@ const getRuleUrl = (ruleName: string): string => {
       return `${config.baseUrl}${ruleId}${config.suffix ?? ''}`
     }
   }
+  if (ruleName.includes('/'))
+    throw new Error(`Not matching rule name: ${ruleName}`)
   return `https://eslint.org/docs/latest/rules/${ruleName}`
 }
 
