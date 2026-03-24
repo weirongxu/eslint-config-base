@@ -1,0 +1,1 @@
+- use `pnpm run test` to check code after change

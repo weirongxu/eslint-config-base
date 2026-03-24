@@ -1,34 +1,31 @@
-import js from '@eslint/js';
-import { type Linter } from 'eslint';
-import eslintConfigPrettier from 'eslint-config-prettier/flat';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import { defineConfig } from 'eslint/config';
-import tseslint from 'typescript-eslint';
+import js from '@eslint/js'
+import { type Linter } from 'eslint'
+import eslintConfigPrettier from 'eslint-config-prettier/flat'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import { defineConfig } from 'eslint/config'
+import tseslint from 'typescript-eslint'
 
 const baseconfig: {
-  js: Linter.Config;
-  ts: Linter.Config;
+  js: Linter.Config
+  ts: Linter.Config
 } = {
   js: {
     name: 'eslint-config-base-js',
     rules: {
       'guard-for-in': 'error',
-      'no-async-promise-executor': 'error',
       'no-implied-eval': 'off',
+      'no-throw-literal': 'off',
       'no-useless-rename': 'error',
       'no-useless-return': 'error',
       'object-shorthand': 'error',
       'prefer-template': 'error',
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-console': ['warn', { allow: ['assert', 'warn', 'error'] }],
     },
   },
   ts: {
     name: 'eslint-config-base-ts',
     rules: {
-      '@typescript-eslint/no-implied-eval': 'error',
-      'no-throw-literal': 'off',
-      '@typescript-eslint/only-throw-error': 'error',
-      '@typescript-eslint/no-unnecessary-condition': 'error',
+      '@typescript-eslint/no-unnecessary-type-parameters': 'off',
 
       '@typescript-eslint/require-await': 'off',
       '@typescript-eslint/restrict-template-expressions': [
@@ -50,37 +47,40 @@ const baseconfig: {
 
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/no-empty-interface': 'off',
-      '@typescript-eslint/ban-ts-comment': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
+
       '@typescript-eslint/no-namespace': 'off',
-      '@typescript-eslint/no-non-null-assertion': 'off',
-      '@typescript-eslint/no-unused-vars': 'warn',
     },
   },
-};
+}
 
 const jsconfig: Linter.Config[] = defineConfig(
   js.configs.recommended,
   eslintPluginPrettierRecommended,
   eslintConfigPrettier,
   baseconfig.js,
-);
+)
 
 const tsconfig: Linter.Config[] = defineConfig(
+  {
+    ignores: ['dist/**'],
+  },
   js.configs.recommended,
   eslintPluginPrettierRecommended,
   eslintConfigPrettier,
-  tseslint.configs.recommendedTypeChecked,
+  tseslint.configs.strictTypeChecked,
   {
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ['test.ts', 'eslint.config.mjs'],
+        },
         sourceType: 'module',
       },
     },
   },
   baseconfig.js,
   baseconfig.ts,
-);
+)
 
-export { baseconfig, jsconfig, tsconfig, tseslint };
+export { baseconfig, jsconfig, tsconfig, tseslint }

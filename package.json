@@ -8,10 +8,15 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "test": "npm run build && npm run test:lint",
-    "test:lint": "eslint --ext .ts test",
+    "test": "pnpm run test:types && pnpm run test:lint && pnpm run test:unit",
+    "test:types": "tsc --noEmit",
+    "test:lint": "eslint",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
     "build": "tsc -p tsconfig.build.json",
-    "prepublish": "npm run build"
+    "prebuild": "pnpm run eject:rules",
+    "prepublish": "pnpm run build",
+    "eject:rules": "tsx scripts/eject-rules.ts"
   },
   "files": [
     "eslint.config.mjs",
@@ -25,8 +30,13 @@
     "typescript-eslint": "^8.53.0"
   },
   "devDependencies": {
+    "@eslint/core": "^1.1.1",
+    "@types/node": "^25.5.0",
+    "dedent": "^1.7.2",
     "eslint": "^9.39.2",
     "prettier": "^3.8.0",
-    "typescript": "^5.9.3"
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
   }
 }
