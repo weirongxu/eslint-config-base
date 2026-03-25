@@ -1,8 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintHelper, SEVERITY, tsconfig } from '../helper'
-
-const lintHelper = new LintHelper(tsconfig)
+import { lintHelper, SEVERITY } from '../helper'
 
 describe('@typescript-eslint/no-implied-eval', () => {
   it('should error on setTimeout with string', async () => {

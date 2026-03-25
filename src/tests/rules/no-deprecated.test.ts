@@ -1,8 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintHelper, SEVERITY, tsconfig } from '../helper'
-
-const lintHelper = new LintHelper(tsconfig)
+import { lintHelper, SEVERITY } from '../helper'
 
 describe('no-deprecated', () => {
   it('should error on using deprecated function', async () => {

@@ -13,6 +13,7 @@
     "test:lint": "eslint",
     "test:unit": "vitest run",
     "test:watch": "vitest",
+    "pretest": "pnpm run build",
     "build": "tsc -p tsconfig.build.json",
     "prebuild": "pnpm run eject:rules",
     "prepublish": "pnpm run build",

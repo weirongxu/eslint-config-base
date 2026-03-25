@@ -35,7 +35,10 @@ export class LintResult {
 }
 
 export class LintHelper {
-  constructor(private readonly config: Linter.Config[]) {}
+  constructor(
+    private readonly config: Linter.Config[],
+    private readonly defaultFilename = 'test.ts',
+  ) {}
 
   async fromContent(
     content: string,
@@ -43,11 +46,24 @@ export class LintHelper {
   ): Promise<LintResult> {
     const linter = new Linter()
 
+    const filename = options?.filename || this.defaultFilename
+
     const messages = linter.verify(
       content.endsWith('\n') ? content : `${content}\n`,
-      this.config,
+      [
+        ...this.config,
+        {
+          languageOptions: {
+            parserOptions: {
+              projectService: {
+                allowDefaultProject: [filename],
+              },
+            },
+          },
+        },
+      ],
       {
-        filename: options?.filename || 'test.ts',
+        filename,
       },
     )
     return new LintResult(messages)

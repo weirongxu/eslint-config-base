@@ -69,18 +69,15 @@ const tsconfig: Linter.Config[] = defineConfig(
   eslintPluginPrettierRecommended,
   eslintConfigPrettier,
   tseslint.configs.strictTypeChecked,
+  baseconfig.js,
+  baseconfig.ts,
   {
     languageOptions: {
       parserOptions: {
-        projectService: {
-          allowDefaultProject: ['test.ts', 'eslint.config.mjs'],
-        },
-        sourceType: 'module',
+        projectService: true,
       },
     },
   },
-  baseconfig.js,
-  baseconfig.ts,
 )
 
 export { baseconfig, jsconfig, tsconfig, tseslint }
