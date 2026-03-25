@@ -1,4 +1,5 @@
 import { Linter } from 'eslint'
+
 import { tsconfig } from '../index'
 
 export { tsconfig }

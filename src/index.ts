@@ -1,8 +1,9 @@
 import js from '@eslint/js'
 import { type Linter } from 'eslint'
+import { defineConfig } from 'eslint/config'
 import eslintConfigPrettier from 'eslint-config-prettier/flat'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
-import { defineConfig } from 'eslint/config'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import tseslint from 'typescript-eslint'
 
 const baseconfig: {
@@ -11,6 +12,9 @@ const baseconfig: {
 } = {
   js: {
     name: 'eslint-config-base-js',
+    plugins: {
+      'simple-import-sort': simpleImportSort,
+    },
     rules: {
       'guard-for-in': 'error',
       'no-implied-eval': 'off',
@@ -20,6 +24,8 @@ const baseconfig: {
       'object-shorthand': 'error',
       'prefer-template': 'error',
       'no-console': ['warn', { allow: ['assert', 'warn', 'error'] }],
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
     },
   },
   ts: {
@@ -38,6 +44,8 @@ const baseconfig: {
           allowRegExp: true,
         },
       ],
+
+      '@typescript-eslint/consistent-type-imports': 'error',
 
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',

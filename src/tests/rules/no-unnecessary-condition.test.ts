@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
+import { describe, expect, it } from 'vitest'
+
 import { lintHelper } from '../helper'
 
 describe('no-unnecessary-condition', () => {

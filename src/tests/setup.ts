@@ -1,5 +1,7 @@
 import { expect } from 'vitest'
-import { LintResult, SEVERITY } from './helper'
+
+import type { LintResult } from './helper'
+import { SEVERITY } from './helper'
 
 type CustomMatchers = {
   toRuleCount: (

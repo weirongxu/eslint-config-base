@@ -374,6 +374,8 @@
   "semi": "off",
   "semi-spacing": "off",
   "semi-style": "off",
+  "simple-import-sort/exports": "error",
+  "simple-import-sort/imports": "error",
   "space-after-function-name": "off",
   "space-after-keywords": "off",
   "space-before-blocks": "off",

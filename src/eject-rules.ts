@@ -1,6 +1,7 @@
-import { RulesConfig } from '@eslint/core'
-import { Linter } from 'eslint'
 import { mkdir, writeFile } from 'node:fs/promises'
+
+import type { RulesConfig } from '@eslint/core'
+import type { Linter } from 'eslint'
 
 export type RuleUrlConfig = {
   baseUrl: string
@@ -33,6 +34,10 @@ const RULE_URL_MAPPING: RuleUrlMapping = {
   'flowtype/': {
     baseUrl:
       'https://github.com/gajus/eslint-plugin-flowtype#eslint-plugin-flowtype-rules-',
+  },
+  'simple-import-sort/': {
+    baseUrl: 'https://github.com/lydell/eslint-plugin-simple-import-sort',
+    fixed: true,
   },
   '@babel/': {
     baseUrl: 'https://www.npmjs.com/package/@babel/eslint-plugin',
