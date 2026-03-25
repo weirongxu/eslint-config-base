@@ -21,7 +21,11 @@
   "files": [
     "eslint.config.mjs",
     "dist/index.js",
-    "dist/index.d.ts"
+    "dist/index.d.ts",
+    "dist/tests/helper.js",
+    "dist/tests/helper.d.ts",
+    "dist/tests/setup.js",
+    "dist/tests/setup.d.ts"
   ],
   "dependencies": {
     "@eslint/js": "^10.0.1",
