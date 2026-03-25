@@ -22,6 +22,8 @@
     "eslint.config.mjs",
     "dist/index.js",
     "dist/index.d.ts",
+    "dist/eject-rules.js",
+    "dist/eject-rules.d.ts",
     "dist/tests/helper.js",
     "dist/tests/helper.d.ts",
     "dist/tests/setup.js",
