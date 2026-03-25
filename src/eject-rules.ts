@@ -2,13 +2,15 @@ import { RulesConfig } from '@eslint/core'
 import { Linter } from 'eslint'
 import { mkdir, writeFile } from 'node:fs/promises'
 
-type RuleUrlConfig = {
+export type RuleUrlConfig = {
   baseUrl: string
   suffix?: string
   fixed?: boolean
 }
 
-const RULE_URL_MAPPING: Record<`${string}/`, RuleUrlConfig> = {
+export type RuleUrlMapping = Record<`${string}/`, RuleUrlConfig>
+
+const RULE_URL_MAPPING: RuleUrlMapping = {
   '@typescript-eslint/': {
     baseUrl: 'https://typescript-eslint.io/rules/',
   },
@@ -63,8 +65,11 @@ const sortRules = (rules: Partial<RulesConfig>): Partial<RulesConfig> => {
   )
 }
 
-const getRuleUrl = (ruleName: string): string => {
-  for (const [prefix, config] of Object.entries(RULE_URL_MAPPING)) {
+const getRuleUrl = (
+  ruleName: string,
+  mergedMapping: RuleUrlMapping,
+): string => {
+  for (const [prefix, config] of Object.entries(mergedMapping)) {
     if (ruleName.startsWith(prefix)) {
       if (config.fixed) return config.baseUrl
       const ruleId = ruleName.replace(prefix, '')
@@ -76,13 +81,15 @@ const getRuleUrl = (ruleName: string): string => {
   return `https://eslint.org/docs/latest/rules/${ruleName}`
 }
 
-const rulesToJsonc = (rules: Partial<RulesConfig>): string => {
-  const sortedRules = Object.entries(sortRules(rules))
-
+const rulesToJsonc = (
+  sortedRules: Partial<RulesConfig>,
+  mergedMapping: RuleUrlMapping,
+): string => {
+  const ruleEntries = Object.entries(sortedRules)
   const lines = ['{']
 
-  for (const [ruleName, ruleValue] of sortedRules) {
-    const url = getRuleUrl(ruleName)
+  for (const [ruleName, ruleValue] of ruleEntries) {
+    const url = getRuleUrl(ruleName, mergedMapping)
     const valueJson = JSON.stringify(ruleValue)
 
     lines.push(`  // ${url}`)
@@ -99,16 +106,33 @@ const rulesToJsonc = (rules: Partial<RulesConfig>): string => {
   return lines.join('\n')
 }
 
+export type EjectRulesOptions = {
+  /**
+   * Custom rule URL mapping to extend or override default RULE_URL_MAPPING
+   */
+  customRuleUrlMapping?: Partial<RuleUrlMapping>
+}
+
 export const ejectRules = async (
   config: Linter.Config[],
   outputPath: string,
+  options?: EjectRulesOptions,
 ): Promise<void> => {
+  const { customRuleUrlMapping = {} } = options ?? {}
   const rules = flatRules(config)
+  const sortedRules = sortRules(rules)
+
+  // Merge mappings once using object spread
+  const mergedMapping = {
+    ...RULE_URL_MAPPING,
+    ...customRuleUrlMapping,
+  } as RuleUrlMapping
+
   const dir = outputPath.substring(0, outputPath.lastIndexOf('/'))
-  await mkdir(dir, { recursive: true })
 
   await Promise.all([
-    writeFile(`${outputPath}.jsonc`, rulesToJsonc(rules)),
-    writeFile(`${outputPath}.json`, JSON.stringify(sortRules(rules), null, 2)),
+    mkdir(dir, { recursive: true }),
+    writeFile(`${outputPath}.jsonc`, rulesToJsonc(sortedRules, mergedMapping)),
+    writeFile(`${outputPath}.json`, JSON.stringify(sortedRules, null, 2)),
   ])
 }
