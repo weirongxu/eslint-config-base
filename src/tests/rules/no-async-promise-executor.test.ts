@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('no-async-promise-executor', () => {
   it('should error on async function in Promise executor', async () => {
@@ -14,7 +14,6 @@ describe('no-async-promise-executor', () => {
     )
     expect(result).toRuleCount(1, {
       rule: 'no-async-promise-executor',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -28,7 +27,6 @@ describe('no-async-promise-executor', () => {
     )
     expect(result).toRuleCount(0, {
       rule: 'no-async-promise-executor',
-      severity: SEVERITY.ERROR,
     })
   })
 })

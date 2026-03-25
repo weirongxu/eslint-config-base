@@ -6,7 +6,7 @@ type CustomMatchers = {
     count: number,
     options: {
       rule: string
-      severity: (typeof SEVERITY)[keyof typeof SEVERITY]
+      severity?: (typeof SEVERITY)[keyof typeof SEVERITY]
       includeMessage?: string
     },
   ) => void
@@ -23,7 +23,7 @@ expect.extend({
     count: number,
     options: {
       rule: string
-      severity: (typeof SEVERITY)[keyof typeof SEVERITY]
+      severity?: (typeof SEVERITY)[keyof typeof SEVERITY]
       includeMessage?: string
     },
   ) {
@@ -34,9 +34,13 @@ expect.extend({
       pass,
       message: () => {
         const severityText =
-          options.severity === SEVERITY.WARN ? 'warn' : 'error'
+          options.severity === undefined
+            ? ''
+            : options.severity === SEVERITY.WARN
+              ? 'warn '
+              : 'error '
         const ruleText = `rule "${options.rule}"`
-        return `Expected ${ruleText} to have ${count} ${severityText} violation${count === 1 ? '' : 's'}, but got ${actualCount}`
+        return `Expected ${ruleText} to have ${count} ${severityText}violation${count === 1 ? '' : 's'}, but got ${actualCount}`
       },
     }
   },

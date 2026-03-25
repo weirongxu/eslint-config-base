@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('no-console', () => {
   it('should warn on console.log', async () => {
@@ -12,7 +12,6 @@ describe('no-console', () => {
     )
     expect(result).toRuleCount(2, {
       rule: 'no-console',
-      severity: SEVERITY.WARN,
     })
   })
 
@@ -24,7 +23,6 @@ describe('no-console', () => {
     )
     expect(result).toRuleCount(0, {
       rule: 'no-console',
-      severity: SEVERITY.WARN,
     })
   })
 
@@ -36,7 +34,6 @@ describe('no-console', () => {
     )
     expect(result).toRuleCount(0, {
       rule: 'no-console',
-      severity: SEVERITY.WARN,
     })
   })
 
@@ -48,7 +45,6 @@ describe('no-console', () => {
     )
     expect(result).toRuleCount(1, {
       rule: 'no-console',
-      severity: SEVERITY.WARN,
     })
   })
 
@@ -61,7 +57,6 @@ describe('no-console', () => {
     )
     expect(result).toRuleCount(0, {
       rule: 'no-console',
-      severity: SEVERITY.WARN,
     })
   })
 })

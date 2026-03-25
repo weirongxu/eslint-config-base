@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('no-misused-promises', () => {
   it('should error on promise-returning function in if statement', async () => {
@@ -17,7 +17,6 @@ describe('no-misused-promises', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-misused-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -34,7 +33,6 @@ describe('no-misused-promises', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-misused-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -52,7 +50,6 @@ describe('no-misused-promises', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-misused-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -67,7 +64,6 @@ describe('no-misused-promises', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-misused-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 })

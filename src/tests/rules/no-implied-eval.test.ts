@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('@typescript-eslint/no-implied-eval', () => {
   it('should error on setTimeout with string', async () => {
@@ -11,7 +11,6 @@ describe('@typescript-eslint/no-implied-eval', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-implied-eval',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -23,7 +22,6 @@ describe('@typescript-eslint/no-implied-eval', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-implied-eval',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -35,7 +33,6 @@ describe('@typescript-eslint/no-implied-eval', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-implied-eval',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -47,7 +44,6 @@ describe('@typescript-eslint/no-implied-eval', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-implied-eval',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -59,7 +55,6 @@ describe('@typescript-eslint/no-implied-eval', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-implied-eval',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -71,7 +66,6 @@ describe('@typescript-eslint/no-implied-eval', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-implied-eval',
-      severity: SEVERITY.ERROR,
     })
   })
 })

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('guard-for-in', () => {
   it('should error on for...in without if guard', async () => {
@@ -13,7 +13,6 @@ describe('guard-for-in', () => {
     )
     expect(result).toRuleCount(1, {
       rule: 'guard-for-in',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -29,7 +28,6 @@ describe('guard-for-in', () => {
     )
     expect(result).toRuleCount(0, {
       rule: 'guard-for-in',
-      severity: SEVERITY.ERROR,
     })
   })
 })

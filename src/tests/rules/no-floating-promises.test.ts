@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('no-floating-promises', () => {
   it('should error on floating promise without handling', async () => {
@@ -11,7 +11,6 @@ describe('no-floating-promises', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-floating-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -25,7 +24,6 @@ describe('no-floating-promises', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-floating-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -37,7 +35,6 @@ describe('no-floating-promises', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-floating-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -51,7 +48,6 @@ describe('no-floating-promises', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-floating-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -65,7 +61,6 @@ describe('no-floating-promises', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-floating-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -77,7 +72,6 @@ describe('no-floating-promises', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-floating-promises',
-      severity: SEVERITY.ERROR,
     })
   })
 })

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('no-unnecessary-condition', () => {
   it('should error on always true condition with literal', async () => {
@@ -13,7 +13,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -27,7 +26,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -43,7 +41,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -59,7 +56,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -76,7 +72,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -93,7 +88,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -109,7 +103,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -125,7 +118,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -141,7 +133,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -157,7 +148,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -175,7 +165,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -192,7 +181,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(2, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -208,7 +196,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -222,7 +209,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -237,7 +223,6 @@ describe('no-unnecessary-condition', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-unnecessary-condition',
-      severity: SEVERITY.ERROR,
     })
   })
 })

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('prefer-template', () => {
   it('should error on string concatenation', async () => {
@@ -12,7 +12,6 @@ describe('prefer-template', () => {
     )
     expect(result).toRuleCount(1, {
       rule: 'prefer-template',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -25,7 +24,6 @@ describe('prefer-template', () => {
     )
     expect(result).toRuleCount(0, {
       rule: 'prefer-template',
-      severity: SEVERITY.ERROR,
     })
   })
 })

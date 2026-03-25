@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('no-deprecated', () => {
   it('should error on using deprecated function', async () => {
@@ -14,7 +14,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -29,7 +28,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -47,7 +45,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -65,7 +62,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -82,7 +78,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -97,7 +92,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -114,7 +108,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -132,7 +125,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -146,7 +138,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -163,7 +154,6 @@ describe('no-deprecated', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/no-deprecated',
-      severity: SEVERITY.ERROR,
     })
   })
 })

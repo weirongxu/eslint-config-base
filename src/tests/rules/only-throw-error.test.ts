@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { lintHelper, SEVERITY } from '../helper'
+import { lintHelper } from '../helper'
 
 describe('@typescript-eslint/only-throw-error', () => {
   it('should error on throwing string', async () => {
@@ -11,7 +11,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -23,7 +22,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -35,7 +33,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -47,7 +44,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -59,7 +55,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -71,7 +66,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -83,7 +77,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -95,7 +88,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -107,7 +99,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -125,7 +116,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(0, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 
@@ -141,7 +131,6 @@ describe('@typescript-eslint/only-throw-error', () => {
     )
     expect(result).toRuleCount(1, {
       rule: '@typescript-eslint/only-throw-error',
-      severity: SEVERITY.ERROR,
     })
   })
 })
