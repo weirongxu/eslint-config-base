@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintResult, SEVERITY } from '../helper'
+import { LintHelper, SEVERITY, tsconfig } from '../helper'
+
+const lintHelper = new LintHelper(tsconfig)
 
 describe('no-console', () => {
   it('should warn on console.log', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         console.log('test')
         console.debug('test')
@@ -17,7 +19,7 @@ describe('no-console', () => {
   })
 
   it('should allow console.error', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         console.error('test')
       `,
@@ -29,7 +31,7 @@ describe('no-console', () => {
   })
 
   it('should allow console.warn', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         console.warn('test')
       `,
@@ -41,7 +43,7 @@ describe('no-console', () => {
   })
 
   it('should warn on console.info', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         console.info('test')
       `,
@@ -53,7 +55,7 @@ describe('no-console', () => {
   })
 
   it('should allow console.assert', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         console.assert(true, 'test')
         console.assert(false, 'error message')

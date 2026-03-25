@@ -1,32 +1,20 @@
 import { Linter } from 'eslint'
 import { tsconfig } from '../index'
 
+export { tsconfig }
+
 export const SEVERITY = {
   ERROR: 2,
   WARN: 1,
 } as const
 
+export type SEVERITY_VALUE = (typeof SEVERITY)[keyof typeof SEVERITY]
+
 export class LintResult {
   public readonly messages: Linter.LintMessage[]
 
-  private constructor(messages: Linter.LintMessage[]) {
+  constructor(messages: Linter.LintMessage[]) {
     this.messages = messages
-  }
-
-  static async fromContent(
-    content: string,
-    options?: { filename?: string },
-  ): Promise<LintResult> {
-    const linter = new Linter()
-
-    const messages = linter.verify(
-      content.endsWith('\n') ? content : `${content}\n`,
-      tsconfig,
-      {
-        filename: options?.filename || 'test.ts',
-      },
-    )
-    return new LintResult(messages)
   }
 
   ruleCount(
@@ -45,3 +33,25 @@ export class LintResult {
     ).length
   }
 }
+
+export class LintHelper {
+  constructor(private readonly config: Linter.Config[]) {}
+
+  async fromContent(
+    content: string,
+    options?: { filename?: string },
+  ): Promise<LintResult> {
+    const linter = new Linter()
+
+    const messages = linter.verify(
+      content.endsWith('\n') ? content : `${content}\n`,
+      this.config,
+      {
+        filename: options?.filename || 'test.ts',
+      },
+    )
+    return new LintResult(messages)
+  }
+}
+
+export const lintHelper = new LintHelper(tsconfig)

@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintResult, SEVERITY } from '../helper'
+import { LintHelper, SEVERITY, tsconfig } from '../helper'
+
+const lintHelper = new LintHelper(tsconfig)
 
 describe('no-async-promise-executor', () => {
   it('should error on async function in Promise executor', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         void new Promise(async (resolve, reject) => {
           await Promise.resolve()
@@ -19,7 +21,7 @@ describe('no-async-promise-executor', () => {
   })
 
   it('should allow non-async Promise executor', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         void new Promise((resolve) => {
           resolve()

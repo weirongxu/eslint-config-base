@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintResult, SEVERITY } from '../helper'
+import { LintHelper, SEVERITY, tsconfig } from '../helper'
+
+const lintHelper = new LintHelper(tsconfig)
 
 describe('no-deprecated', () => {
   it('should error on using deprecated function', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         /** @deprecated Use newFunction instead */
         function oldFunction() {}
@@ -19,7 +21,7 @@ describe('no-deprecated', () => {
   })
 
   it('should error on using deprecated class', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         /** @deprecated Use NewClass instead */
         class OldClass {}
@@ -34,7 +36,7 @@ describe('no-deprecated', () => {
   })
 
   it('should error on using deprecated method', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         class MyClass {
           /** @deprecated Use newMethod instead */
@@ -52,7 +54,7 @@ describe('no-deprecated', () => {
   })
 
   it('should error on using deprecated property', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         class MyClass {
           /** @deprecated Use newProp instead */
@@ -70,7 +72,7 @@ describe('no-deprecated', () => {
   })
 
   it('should error on using deprecated enum member', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         enum MyEnum {
           /** @deprecated Use NEW_VALUE instead */
@@ -87,7 +89,7 @@ describe('no-deprecated', () => {
   })
 
   it('should error on using deprecated type', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         /** @deprecated Use NewType instead */
         type OldType = string;
@@ -102,7 +104,7 @@ describe('no-deprecated', () => {
   })
 
   it('should error on using deprecated interface', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         /** @deprecated Use NewInterface instead */
         interface OldInterface {
@@ -119,7 +121,7 @@ describe('no-deprecated', () => {
   })
 
   it('should error on using deprecated function with deprecated parameter', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         /** @deprecated Use newFunction instead */
         function myFunction(
@@ -137,7 +139,7 @@ describe('no-deprecated', () => {
   })
 
   it('should allow non-deprecated code', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function myFunction() {}
 
@@ -151,7 +153,7 @@ describe('no-deprecated', () => {
   })
 
   it('should allow using new replacement function', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         /** @deprecated Use newFunction instead */
         function oldFunction() {}

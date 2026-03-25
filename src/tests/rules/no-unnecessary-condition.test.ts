@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintResult, SEVERITY } from '../helper'
+import { LintHelper, SEVERITY, tsconfig } from '../helper'
+
+const lintHelper = new LintHelper(tsconfig)
 
 describe('no-unnecessary-condition', () => {
   it('should error on always true condition with literal', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         if (true) {
           console.log('always true')
@@ -18,7 +20,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should error on always false condition with literal', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         if (false) {
           console.log('never true')
@@ -32,7 +34,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should error on unnecessary null check on non-nullable type', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(value: string) {
           if (value === null) {
@@ -48,7 +50,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should error on unnecessary undefined check on non-nullable type', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(value: string) {
           if (value === undefined) {
@@ -64,7 +66,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should error on unnecessary truthy check on literal', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test() {
           const value = 'hello'
@@ -81,7 +83,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should error on unnecessary falsy check on empty string literal', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test() {
           const value = ''
@@ -98,7 +100,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should allow condition with nullable type', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(value: string | null) {
           if (value === null) {
@@ -114,7 +116,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should allow condition with optional type', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(value: string | undefined) {
           if (value === undefined) {
@@ -130,7 +132,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should allow condition with variable', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(condition: boolean) {
           if (condition) {
@@ -146,7 +148,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should allow condition with type guard', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(value: string | number) {
           if (typeof value === 'string') {
@@ -162,7 +164,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should allow condition after type narrowing', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(value: string | null) {
           if (value !== null) {
@@ -180,7 +182,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should error on redundant logical AND with literal', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test() {
           const value = true
@@ -197,7 +199,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should allow logical AND with two variables', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(a: boolean, b: boolean) {
           if (a && b) {
@@ -213,7 +215,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should error on optional chaining on non-nullable type', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(value: string) {
           const result = value?.toLowerCase()
@@ -227,7 +229,7 @@ describe('no-unnecessary-condition', () => {
   })
 
   it('should allow optional chaining on nullable type', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test(value: string | null, value2: string | undefined) {
           const result = value?.toLowerCase()

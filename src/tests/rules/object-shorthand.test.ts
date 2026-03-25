@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintResult, SEVERITY } from '../helper'
+import { LintHelper, SEVERITY, tsconfig } from '../helper'
+
+const lintHelper = new LintHelper(tsconfig)
 
 describe('object-shorthand', () => {
   it('should error when not using shorthand', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         const obj = { name: name }
       `,
@@ -16,7 +18,7 @@ describe('object-shorthand', () => {
   })
 
   it('should allow shorthand syntax', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         const obj = { name }
       `,

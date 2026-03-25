@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintResult, SEVERITY } from '../helper'
+import { LintHelper, SEVERITY, tsconfig } from '../helper'
+
+const lintHelper = new LintHelper(tsconfig)
 
 describe('prefer-template', () => {
   it('should error on string concatenation', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         const name = 'World'
         const message = 'Hello ' + name + '!'
@@ -17,7 +19,7 @@ describe('prefer-template', () => {
   })
 
   it('should allow template literals', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         const name = 'World'
         const message = \`Hello \${name}!\`

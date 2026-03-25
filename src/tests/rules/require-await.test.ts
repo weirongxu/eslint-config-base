@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintResult, SEVERITY } from '../helper'
+import { LintHelper, SEVERITY, tsconfig } from '../helper'
+
+const lintHelper = new LintHelper(tsconfig)
 
 describe('require-await', () => {
   it('should allow async function without await (rule disabled)', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         async function foo() {
           return Promise.resolve('value')
@@ -18,7 +20,7 @@ describe('require-await', () => {
   })
 
   it('should allow async arrow function without await (rule disabled)', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         async () => {
           return 'value'

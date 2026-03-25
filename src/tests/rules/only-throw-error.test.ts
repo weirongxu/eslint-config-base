@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintResult, SEVERITY } from '../helper'
+import { LintHelper, SEVERITY, tsconfig } from '../helper'
+
+const lintHelper = new LintHelper(tsconfig)
 
 describe('@typescript-eslint/only-throw-error', () => {
   it('should error on throwing string', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         throw 'error message'
       `,
@@ -16,7 +18,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should error on throwing number', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         throw 404
       `,
@@ -28,7 +30,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should error on throwing boolean', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         throw true
       `,
@@ -40,7 +42,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should error on throwing object', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         throw { code: 404, message: 'Not Found' }
       `,
@@ -52,7 +54,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should error on throwing null', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         throw null
       `,
@@ -64,7 +66,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should error on throwing undefined', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         throw undefined
       `,
@@ -76,7 +78,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should allow throwing Error', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         throw new Error('error message')
       `,
@@ -88,7 +90,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should allow throwing TypeError', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         throw new TypeError('type error')
       `,
@@ -100,7 +102,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should allow throwing RangeError', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         throw new RangeError('range error')
       `,
@@ -112,7 +114,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should allow throwing custom Error class', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         class CustomError extends Error {
           constructor(message: string) {
@@ -130,7 +132,7 @@ describe('@typescript-eslint/only-throw-error', () => {
   })
 
   it('should error on throwing re-thrown non-Error', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         try {
           // something

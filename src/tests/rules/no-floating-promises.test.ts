@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import dedent from 'dedent'
-import { LintResult, SEVERITY } from '../helper'
+import { LintHelper, SEVERITY, tsconfig } from '../helper'
+
+const lintHelper = new LintHelper(tsconfig)
 
 describe('no-floating-promises', () => {
   it('should error on floating promise without handling', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         Promise.resolve('value')
       `,
@@ -16,7 +18,7 @@ describe('no-floating-promises', () => {
   })
 
   it('should allow handled promise with await', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         async function test() {
           await Promise.resolve('value')
@@ -30,7 +32,7 @@ describe('no-floating-promises', () => {
   })
 
   it('should allow handled promise with catch', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         Promise.resolve('value').catch(console.error)
       `,
@@ -42,7 +44,7 @@ describe('no-floating-promises', () => {
   })
 
   it('should allow returned promise', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test() {
           return Promise.resolve('value')
@@ -56,7 +58,7 @@ describe('no-floating-promises', () => {
   })
 
   it('should error on floating promise in function', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         function test() {
           Promise.resolve('value')
@@ -70,7 +72,7 @@ describe('no-floating-promises', () => {
   })
 
   it('should allow void expression with promise', async () => {
-    const result = await LintResult.fromContent(
+    const result = await lintHelper.fromContent(
       dedent`
         void Promise.resolve('value')
       `,
