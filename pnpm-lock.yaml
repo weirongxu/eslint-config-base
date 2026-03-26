@@ -17,6 +17,9 @@ importers:
       eslint-plugin-prettier:
         specifier: ^5.5.5
         version: 5.5.5(eslint-config-prettier@10.1.8(eslint@10.1.0))(eslint@10.1.0)(prettier@3.8.1)
+      eslint-plugin-simple-import-sort:
+        specifier: ^12.1.1
+        version: 12.1.1(eslint@10.1.0)
       typescript-eslint:
         specifier: ^8.53.0
         version: 8.57.2(eslint@10.1.0)(typescript@6.0.2)
@@ -33,9 +36,6 @@ importers:
       eslint:
         specifier: ^10.1.0
         version: 10.1.0
-      eslint-plugin-simple-import-sort:
-        specifier: ^12.1.1
-        version: 12.1.1(eslint@10.1.0)
       prettier:
         specifier: ^3.8.0
         version: 3.8.1
