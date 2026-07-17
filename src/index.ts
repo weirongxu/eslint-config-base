@@ -1,5 +1,5 @@
 import js from '@eslint/js'
-import { type Linter } from 'eslint'
+import type { Linter } from 'eslint'
 import { defineConfig } from 'eslint/config'
 import eslintConfigPrettier from 'eslint-config-prettier/flat'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
@@ -46,6 +46,7 @@ const baseconfig: {
       ],
 
       '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/no-import-type-side-effects': 'error',
 
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
