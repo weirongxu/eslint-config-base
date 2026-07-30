@@ -11,17 +11,15 @@ npm install @raidou/eslint-config-base
 eslint.config.mjs
 
 ```javascript
-import { tsconfig } from '@raidou/eslint-config-base';
-export default tsconfig;
-```
-
-custom rules
-
-```javascript
-import { tsconfig, tseslint } from '@raidou/eslint-config-base';
-export default tseslint.config(tsconfig, {
-  rules: {
-    'no-var': 'off',
+import { tsconfig } from '@raidou/eslint-config-base'
+import { defineConfig, globalIgnores } from 'eslint/config'
+export default defineConfig([
+  globalIgnores(['**/node_modules/', '**/.vitest/', '**/dist/', '**/.venv/']),
+  tsconfig,
+  {
+    rules: {
+      // ...
+    },
   },
-});
+])
 ```
